@@ -48,17 +48,14 @@ def extract_info_from_file(file_content):
 # URL của trang web bạn muốn gửi POST request
 url = "http://kqmb.hust.edu.vn/"
 
-count = 1
-# male -> 137220  Chắc là hết r
-# number = 87208
 number = 1
 
 results = []
 
 # Sử dụng session để tối ưu hóa request
 with requests.Session() as session:
-    while number < 15000:
-        cccd = '001305'+f'{number:06d}' 
+    while number < 100000:
+        cccd = '001306'+f'{number:06d}' 
         # Dữ liệu POST cần gửi
         payload = {
             'cmt': cccd,
@@ -76,17 +73,17 @@ with requests.Session() as session:
             print("____________HỢP LỆ____________")
 
         # Kiểm tra kết quả phản hồi
-        print(f"Đây là response thứ {count} của số {number}")
+        print(f"Đây là response của căn cước công dân số 001306{number}")
         count += 1
         number += 1
 
         # Viết kết quả vào file sau mỗi 1000 số kiểm tra
         if len(results) >= 50:
-            with open('hanoi_female_2k5.txt', 'a', encoding='utf-8-sig') as file:
+            with open('hanoi_female_2k6.txt', 'a', encoding='utf-8-sig') as file:
                 file.write("\n".join(results) + "\n")
             results.clear()
 
     # Ghi lại bất kỳ kết quả nào còn lại
     if results:
-        with open('hanoi_female_2k5.txt', 'a', encoding='utf-8-sig') as file:
+        with open('hanoi_female_2k6.txt', 'a', encoding='utf-8-sig') as file:
             file.write("\n".join(results) + "\n")
